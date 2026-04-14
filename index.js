@@ -14,6 +14,6 @@ app.post("/login", logInController)
 app.post("/logout", logOutController)
 
 // prot---------- 
-app.listen(8000, (req, res) => {
+app.listen(prot, (req, res) => {
     console.log(`This surver running on prot ${prot}`)
 })
