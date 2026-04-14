@@ -15,7 +15,7 @@ dist
 build/Release
 
 # Environment
-.env
+.env.example
 .env.test
 .env.production
 
@@ -23,4 +23,3 @@ build/Release
 .vscode/
 .idea/
 
-.env.example
