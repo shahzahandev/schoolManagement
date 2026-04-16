@@ -33,7 +33,7 @@ const profileSchema = new Schema({
     gender: {
         type: String,
         required: true,
-        erum: ['male', 'female', 'custom']
+        erum: ['male', 'female']
     },
     parentsNumber: {
         type: String,
@@ -46,6 +46,10 @@ const profileSchema = new Schema({
     result: {
         type: String,
         required: true
+    },
+    isHold:{
+        type: Boolean,
+        default: false
     }
 })
 

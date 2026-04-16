@@ -4,17 +4,8 @@ let studentProfileController = (req, res) => {
     let{name, fatherName, motherName, className,  roll, payDate, bloodGroup, gender, parentsNumber, dob, result} = req.body
 
     let profile = new Profile({
-        name,
-        fatherName,
-        motherName,
-        className,
-        roll,
-        payDate,
-        bloodGroup,
-        gender,
-        parentsNumber,
-        dob,
-        result
+        name, fatherName, motherName, className, roll, payDate, bloodGroup, gender,
+        parentsNumber, dob, result
     })
     profile.save()
     res.status(201).json({
@@ -34,5 +25,46 @@ let allStudent = async(req, res) => {
     })
 }
 
+let singleStudent = async(req, res) => {
+    let {id} = req.params
+    let studentData = await Profile.findOne({_id : id})
 
-module.exports = { studentProfileController, allStudent }
+    return res.status(200).json({
+        success: true,
+        message: `Student name ${studentData.name}'.Profile details blow.`,
+        data: studentData
+    })
+}
+
+let holdStudent = async(req, res) => {
+    let {id} = req.body
+    let holdItems = await Profile.findOne({_id: id})
+    holdItems.isHold = true
+    holdItems.save()
+    return res.status(200).json({
+        success: true,
+        message: `${holdItems.name}'s profile holded successfuly.`
+    })
+}
+
+let deleteStudent = async(req, res) => {
+    let {id} = req.body
+    let deleteItems = await Profile.findByIdAndDelete({_id : id})
+    return res.status(200).json({
+        success: true,
+        message: `${deleteItems.name}'s Profile deleted successfuly.`
+    })
+}
+
+let updateStudent = async(req, res) => {
+    let {id} = req.params
+    let updateItems = await Profile.findByIdAndUpdate({_id: id}, req.body, {new: true})
+    return res.status(200).json({
+        success: true,
+        message: `${updateItems.name}'s profile updated successfuly.`,
+        data: updateItems
+    })
+}
+
+
+module.exports = { studentProfileController, allStudent, singleStudent, holdStudent, deleteStudent, updateStudent }

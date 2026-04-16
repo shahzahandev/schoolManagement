@@ -25,10 +25,6 @@ let registrationMondel = new Schema({
     },
     address: {
         type: String
-    },
-    isHold: {
-        type: Boolean,
-        default: false
     }
 })
 

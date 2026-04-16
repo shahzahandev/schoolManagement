@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
-let dbContent = () => {
+let dbConnection = () => {
     mongoose.connect(process.env.DB_URL).then(() => {
     console.log("database connected");
     })
 }
 
-module.exports = {dbContent}
+module.exports = {dbConnection}
