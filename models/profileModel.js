@@ -36,8 +36,7 @@ const profileSchema = new Schema({
         }
     },
     payDate: {
-        type: Date,
-        required: true
+        type: Date
     },
     bloodGroup: {
         type: String,
@@ -46,7 +45,7 @@ const profileSchema = new Schema({
     gender: {
         type: String,
         required: true,
-        erum: ['male', 'female']
+        enum: ['male', 'female']
     },
     dob: {
         type: String,

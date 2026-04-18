@@ -19,14 +19,14 @@ app.post("/login", logInController)
 app.post("/logout", logOutController)
 
 // =======================================
-app.post("/profile", studentProfileController)
 app.get("/allStudent", allStudent)
-app.post('/singleProfile/:id', singleStudent)
-app.post('/holdProfile', holdStudent)
-app.delete('/deleteProfile', deleteStudent)
-app.post("/updateProfile/:id", updateStudent)
 app.get ("/allProfileWithoutHold", allStudentWithoutHold)
 app.get("/allHoldProfile", getHoldProfile)
+app.post('/singleProfile/:id', singleStudent)
+app.post('/holdProfile', holdStudent)
+app.post("/updateProfile/:id", updateStudent)
+app.post("/profile", studentProfileController)
+app.delete('/deleteProfile', deleteStudent)
 
 // ============ prot ======================
 app.listen(port, (req, res) => {
