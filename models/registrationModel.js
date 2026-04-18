@@ -12,19 +12,24 @@ let registrationMondel = new Schema({
         trim: true,
         unique: true,
         lowerCase: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        // match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     password: {
         type: String,
         required: true,
         min: [5, "Too low"],
-        mix: [10, "Too high"]
+        mix: [10, "Too high"],
+        // match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Please fill a valid password']
     },
     photo: {
         type: String
     },
     address: {
         type: String
+    },
+    isLogin:{
+        type: Boolean,
+        default: false
     }
 })
 

@@ -28,22 +28,21 @@ let registrationController = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Server error"
+            message: "Server error."
         })
     }
 }
 
 let logInController = async (req, res) => {
     let { email, password } = req.body
+
     const existingUser = await User.findOne({ email: email })
-
-     if(existingUser.isHold = true){
-           return res.status(400).json({
+    if (existingUser.isLogin == true) {
+        return res.status(406).json({
             success: false,
-            message: "Please, Logout from another device"
-           }) 
-        }
-
+            message: "Please, Logout from another device."
+        })
+    }
     if (!existingUser) {
         return res.status(404).json({
             success: false,
@@ -53,11 +52,11 @@ let logInController = async (req, res) => {
     let pass = bcrypt.compareSync(password, existingUser.password)
 
     if (pass) {
-        existingUser.isHold = true
+        existingUser.isLogin = true
         existingUser.save()
         return res.status(200).json({
             success: true,
-            message: "Login success"
+            message: "Login successfull."
         })
     } else {
         return res.status(404).json({
@@ -67,16 +66,24 @@ let logInController = async (req, res) => {
     }
 }
 
-let logOutController = async(req, res) => {
-    let {email} = req.body
-    const existingUser = await User.findOne({email: email})
-    existingUser.isHold = false
-    existingUser.save()
-    return res.status(200).json({
-        success: true,
-        message: "Logout success"
-    })
+let logOutController = async (req, res) => {
+    let { email } = req.body
+    try {
+        const existingUser = await User.findOne({ email: email })
+        existingUser.isLogin = false
+        existingUser.save()
+        return res.status(200).json({
+            success: true,
+            message: "Logout success."
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Server err.",
+            err: error
+        })
+    }
 }
- 
+
 
 module.exports = { registrationController, logInController, logOutController }

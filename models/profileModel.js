@@ -2,25 +2,38 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose
 
 const profileSchema = new Schema({
+    studentId: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
-        required: true
+        required: true,
     },
-    fatherName: {
-        type: String,
-        required: true
+    parentInfo: {
+        fatherName: {
+            type: String,
+            required: true
+        },
+        motherName: {
+            type: String,
+            required: true
+        },
+        parentsNumber: {
+            type: String,
+            required: true
+        },
     },
-    motherName: {
-        type: String,
-        required: true
-    },
-    className: {
-        type: String,
-        required: true
-    },
-    roll: {
-        type: Number,
-        required: true
+    classInfo: {
+        className: {
+            type: String,
+            required: true,
+            enum: ["six", "seven", "eight", "nine", "ten"]
+        },
+        roll: {
+            type: Number,
+            required: true
+        }
     },
     payDate: {
         type: Date,
@@ -35,10 +48,6 @@ const profileSchema = new Schema({
         required: true,
         erum: ['male', 'female']
     },
-    parentsNumber: {
-        type: String,
-        required: true
-    },
     dob: {
         type: String,
         required: true
@@ -47,7 +56,7 @@ const profileSchema = new Schema({
         type: String,
         required: true
     },
-    isHold:{
+    isHold: {
         type: Boolean,
         default: false
     }
