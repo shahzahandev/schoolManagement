@@ -3,10 +3,14 @@ const express = require('express')
 const { registrationController, logInController, logOutController } = require('./controllers/registrationController')
 const { dbConnection } = require('./config/mongodbConnection')
 const {studentProfileController, allStudent, singleStudent, holdStudent, deleteStudent, updateStudent, allStudentWithoutHold, getHoldProfile} = require('./controllers/profileControllers')
+let cors = require('cors')
+
 
 const app = express()
 
 app.use(express.json())
+
+app.use(cors())
 
 let port = process.env.PORT || 5000
 

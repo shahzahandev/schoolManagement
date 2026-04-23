@@ -7,7 +7,7 @@ let registrationController = async (req, res) => {
     try {
         const existingUser = await User.findOne({ email: email })
         if (existingUser) {
-            return res.status(400).json({
+            return res.json({
                 success: false,
                 message: "Student already existed."
             })
@@ -19,7 +19,7 @@ let registrationController = async (req, res) => {
             password: hash
         })
         createStudent.save()
-        return res.status(201).json({
+        return res.json({
             success: true,
             message: "Registration success.",
             user: createStudent.name,
